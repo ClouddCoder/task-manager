@@ -3,5 +3,26 @@
   <head>
     <%- include("partials/head"); %>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <main>
+        <div class="main-container">
+          <section class="task-container">
+            <h1>Task Manager</h1>
+            <form action="" method="POST">
+              <input type="text" placeholder="Your task" />
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+          <section class="task-container">
+            <div>
+              <span>Tarea</span>
+              <a href="/edit">Edit</a>
+              <button>Delete task</button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
