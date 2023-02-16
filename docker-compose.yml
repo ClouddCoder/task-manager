@@ -28,10 +28,9 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./src/models/createdb.sql:/docker-entrypoint-initdb.d/createdb.sql # creates database's tables.
       - ./src/models/functions.sql:/docker-entrypoint-initdb.d/functions.sql # creates database's functions.
-      - ./src/models/insert.sql:/docker-entrypoint-initdb.d/insert.sql # inserts data into database's tables.
 
   pgadmin:
-    container_name: pgadmin-tfr
+    container_name: pgadmin
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
