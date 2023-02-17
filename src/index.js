@@ -26,6 +26,9 @@ app.use(express.json());
 app.use(express.static(join(__dirname, "public")));
 app.use(router);
 
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => res.status(404).json({ message: "Informacion invalida" }));
+
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 
 app.listen(PORT, () => {
