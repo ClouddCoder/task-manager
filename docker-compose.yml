@@ -26,7 +26,7 @@ services:
       - POSTGRES_DB=task-manager
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./src/models/createdb.sql:/docker-entrypoint-initdb.d/createdb.sql # creates database's tables.
+      - ./src/models/tables.sql:/docker-entrypoint-initdb.d/tables.sql # creates database's tables.
       - ./src/models/task-functions.sql:/docker-entrypoint-initdb.d/task-functions.sql # creates database's task functions.
       - ./src/models/user-functions.sql:/docker-entrypoint-initdb.d/user-functions.sql # creates database's user functions.
 
