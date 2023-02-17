@@ -1,7 +1,7 @@
 CREATE TABLE user_data (
     user_id SERIAL PRIMARY KEY,
-    username VARCHAR(25) NOT NULL,
-    user_email VARCHAR(40) NOT NULL,
+    username VARCHAR(25) NOT NULL UNIQUE,
+    user_email VARCHAR(40) NOT NULL UNIQUE,
     user_password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
