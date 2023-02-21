@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <%- include("partials/head"); %>
+    <script src="/authentication.js"></script>
   </head>
   <body>
     <div class="container">
@@ -9,17 +10,21 @@
         <div class="main-container">
           <section class="task-container">
             <h1>Task Manager</h1>
-            <form action="" method="POST">
-              <input type="text" placeholder="Your task" />
+            <form id="submit-form">
+              <input id="task-title" type="text" placeholder="Your task" />
+              <input id="task-description" type="text" placeholder="Description" />
               <button type="submit">Submit</button>
             </form>
           </section>
           <section class="task-container">
-            <div>
-              <span>Tarea</span>
-              <a href="/edit">Edit</a>
-              <button>Delete task</button>
+            <% if (data.length !== 0) { %> <% for (let task = 0; task < data.length; task++) { %>
+            <div class="task">
+              <h2><%= data[task].title %></h2>
+              <button class="delete" data-id="<%= data[task]._id %>">Delete</button>
             </div>
+            <% } %> <% } else { %>
+            <h2>No tasks</h2>
+            <% } %>
           </section>
         </div>
       </main>

@@ -41,6 +41,7 @@ const register = async (req, res, next) => {
  * @param {*} next
  * @returns
  */
+
 const login = async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -71,7 +72,7 @@ const login = async (req, res, next) => {
       username: data.username,
     };
 
-    const token = jwt.sign(payload, jwtPassword);
+    const token = jwt.sign(payload, "1234");
 
     return res.json({
       username: data.username,
