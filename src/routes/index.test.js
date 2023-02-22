@@ -86,3 +86,38 @@ describe.skip("PUT /update-task-title", () => {
     getAuthorizationSpy.mockRestore();
   });
 });
+
+describe("PUT /update-task-description", () => {
+  it("should not update the task's description because of the lack of the user token", async () => {
+    const response = await api
+      .put("/update-task-description")
+      .send({
+        taskId: 1,
+        description: "New description",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("Unauthorized");
+  });
+});
+
+describe("PUT /update-task-description", () => {
+  it("should update the task's description", async () => {
+    const getAuthorizationSpy = jest
+      .spyOn(authorization, "default")
+      .mockImplementation(() => ({ userId: 1, username: "test" }));
+
+    const response = await api
+      .put("/update-task-description")
+      .send({
+        taskId: 1,
+        description: "New description",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.status).toEqual(302);
+    getAuthorizationSpy.mockRestore();
+  });
+});
