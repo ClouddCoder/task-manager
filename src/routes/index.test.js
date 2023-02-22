@@ -23,11 +23,11 @@ describe("POST /create-task", () => {
         description: "Test description",
         status: "pending",
       })
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(401);
+      .set("Accept", "application/json");
 
-    expect(response.body.message).toBe("Unauthorized");
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("Unauthorized");
   });
 });
 
@@ -47,7 +47,7 @@ describe("POST /create-task", () => {
       })
       .set("Authorization", "Bearer 1234");
 
-    expect(response.status).toBe(302);
+    expect(response.status).toEqual(302);
     getAuthorizationSpy.mockRestore();
   });
 });
