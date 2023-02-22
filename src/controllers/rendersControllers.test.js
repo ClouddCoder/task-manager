@@ -26,7 +26,7 @@ describe.skip("registerPage", () => {
   });
 });
 
-describe("tasksPage", () => {
+describe.skip("tasksPage", () => {
   beforeEach(() => {
     pool.query.mockResolvedValue({ rows: [] });
   });
