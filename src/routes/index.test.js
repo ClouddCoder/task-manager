@@ -1,7 +1,7 @@
 import request from "supertest";
 import dotenv from "dotenv";
 import * as authorization from "../controllers/authorization.js";
-import { app, server } from "../index.js";
+import app from "../app.js";
 import pool from "../db.js";
 
 dotenv.config();
@@ -9,7 +9,6 @@ dotenv.config();
 const api = request(app);
 
 afterAll(() => {
-  server.close();
   pool.end();
 });
 

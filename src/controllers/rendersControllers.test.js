@@ -31,7 +31,7 @@ describe.skip("tasksPage", () => {
     pool.query.mockResolvedValue({ rows: [] });
   });
 
-  it.skip("should call de pool.query method", async () => {
+  it("should call de pool.query method", async () => {
     Render.tasksPage(req, res);
 
     expect(pool.query).toHaveBeenCalledTimes(1);
