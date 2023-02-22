@@ -21,6 +21,12 @@ app.use(express.static(join(__dirname, "scripts")));
 app.use(router);
 
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => res.status(404).json({ message: "Informacion invalida" }));
+app.use((err, req, res, next) => {
+  if (err.code === "23502") {
+    return res.status(404).json({ message: "Informacion invalida" });
+  }
+
+  return res.status(400).json({ message: "Error" });
+});
 
 export default app;
