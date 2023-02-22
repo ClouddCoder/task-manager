@@ -12,10 +12,10 @@ import {
 const router = Router();
 
 router.get("/", tasksPage);
-router.get("/login-page", loginPage);
-router.post("/login", login);
 router.get("/sign-up-page", registerPage);
 router.post("/sign-up", register);
+router.get("/login-page", loginPage);
+router.post("/login", login);
 router.post("/create-task", createTask);
 router.put("/update-task-title", updateTaskTitle);
 router.put("/update-task-description", updateTaskDescription);

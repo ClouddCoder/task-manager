@@ -12,8 +12,40 @@ afterAll(() => {
   pool.end();
 });
 
+describe.skip("POST /sign-up", () => {
+  it("should not register a new user because the password is missing", async () => {
+    const response = await api
+      .post("/sign-up")
+      .send({
+        email: "prueba@prueba.com",
+        password: "",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(404);
+    expect(response.body.message).toEqual("Informacion invalida");
+  });
+});
+
+describe.skip("POST /sign-up", () => {
+  it("should not register a new user because the email is missing", async () => {
+    const response = await api
+      .post("/sign-up")
+      .send({
+        email: "",
+        password: "1234",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(404);
+    expect(response.body.message).toEqual("Informacion invalida");
+  });
+});
+
 describe.skip("POST /create-task", () => {
-  it("should not create a new task because of the lack of the user token", async () => {
+  it("should not create a new task because the user is not authorized", async () => {
     const response = await api
       .post("/create-task")
       .send({
@@ -52,7 +84,7 @@ describe.skip("POST /create-task", () => {
 });
 
 describe.skip("PUT /update-task-title", () => {
-  it("should not update the task's title because of the lack of the user token", async () => {
+  it("should not update the task's title because the user is not authorized", async () => {
     const response = await api
       .put("/update-task-title")
       .send({
@@ -87,7 +119,7 @@ describe.skip("PUT /update-task-title", () => {
 });
 
 describe.skip("PUT /update-task-description", () => {
-  it("should not update the task's description because of the lack of the user token", async () => {
+  it("should not update the task's description because the user is not authorized", async () => {
     const response = await api
       .put("/update-task-description")
       .send({
@@ -122,7 +154,7 @@ describe.skip("PUT /update-task-description", () => {
 });
 
 describe.skip("PUT /update-task-status", () => {
-  it("should not update the task's status because of the lack of the user token", async () => {
+  it("should not update the task's status because the user is not authorized", async () => {
     const response = await api
       .put("/update-task-status")
       .send({
