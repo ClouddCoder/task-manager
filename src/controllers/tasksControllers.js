@@ -45,11 +45,10 @@ const updateTaskTitle = async (req, res, next) => {
   }
 
   const updateTaskTitleQuery = "CALL update_task_title($1, $2)";
-  const values = [title, taskId];
+  const values = [taskId, title];
 
   try {
     await pool.query(updateTaskTitleQuery, values);
-    res.json({ message: "Task title updated successfully" });
     res.redirect("/");
   } catch (error) {
     next(error);
@@ -73,11 +72,10 @@ const updateTaskDescription = async (req, res, next) => {
   }
 
   const updateTaskDescriptionQuery = "CALL update_task_description($1, $2)";
-  const values = [description, taskId];
+  const values = [taskId, description];
 
   try {
     await pool.query(updateTaskDescriptionQuery, values);
-    res.json({ message: "Task description updated successfully" });
     res.redirect("/");
   } catch (error) {
     next(error);
@@ -105,7 +103,6 @@ const updateTaskStatus = async (req, res, next) => {
 
   try {
     await pool.query(updateTaskStatusQuery, values);
-    res.json({ message: "Task status updated successfully" });
     res.redirect("/");
   } catch (error) {
     next(error);
@@ -133,7 +130,7 @@ const deleteTask = async (req, res, next) => {
 
   try {
     await pool.query(deleteTaskQuery, values);
-    res.json({ message: "Task deleted successfully" });
+    res.redirect("/");
   } catch (error) {
     next(error);
   }
