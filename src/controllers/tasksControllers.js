@@ -22,7 +22,6 @@ const createTask = async (req, res, next) => {
 
   try {
     await pool.query(createTaskQuery, values);
-    res.json({ message: "Task created successfully" });
     res.redirect("/");
   } catch (error) {
     next(error);
@@ -86,6 +85,34 @@ const updateTaskDescription = async (req, res, next) => {
 };
 
 /**
+ * Updates the task's status.
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ */
+const updateTaskStatus = async (req, res, next) => {
+  const { taskId, status } = req.body;
+  const { authorization } = req.headers;
+  const decodeToken = getAuthorization(authorization);
+
+  if (decodeToken.code) {
+    return res.status(decodeToken.code).json({ message: decodeToken.message });
+  }
+
+  const updateTaskStatusQuery = "CALL update_task_status($1, $2)";
+  const values = [status, taskId];
+
+  try {
+    await pool.query(updateTaskStatusQuery, values);
+    res.json({ message: "Task status updated successfully" });
+    res.redirect("/");
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * Deletes a task.
  * @param {*} req
  * @param {*} res
@@ -112,4 +139,4 @@ const deleteTask = async (req, res, next) => {
   }
 };
 
-export { createTask, updateTaskTitle, updateTaskDescription, deleteTask };
+export { createTask, updateTaskTitle, updateTaskDescription, updateTaskStatus, deleteTask };
