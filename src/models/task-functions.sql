@@ -23,6 +23,14 @@ AS $$
     END;
 $$ LANGUAGE plpgsql;
 
+-- Updates the description of the task
+CREATE OR REPLACE PROCEDURE update_task_status (id INTEGER, new_status VARCHAR(25))
+AS $$
+    BEGIN
+        UPDATE task SET task_status = new_status  WHERE task_id = id;
+    END;
+$$ LANGUAGE plpgsql;
+
 -- Saves the deleted task in the old_task table
 CREATE OR REPLACE FUNCTION set_old_task() RETURNS trigger
 AS $$

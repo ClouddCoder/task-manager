@@ -99,7 +99,7 @@ const updateTaskStatus = async (req, res, next) => {
   }
 
   const updateTaskStatusQuery = "CALL update_task_status($1, $2)";
-  const values = [status, taskId];
+  const values = [taskId, status];
 
   try {
     await pool.query(updateTaskStatusQuery, values);
