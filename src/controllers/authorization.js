@@ -3,7 +3,7 @@ import { config } from "dotenv";
 
 config();
 
-const jwtPassword = process.env.JWT_PASSWORD;
+const jwtPassword = process.env.JWT_SECRET;
 
 /**
  * Verifies if the user is authorized.
