@@ -13,18 +13,36 @@ afterAll(() => {
 });
 
 describe.skip("POST /sign-up", () => {
+  it("should not register a new user because the username is missing", async () => {
+    const response = await api
+      .post("/sign-up")
+      .send({
+        username: "",
+        email: "prueba@prueba.com",
+        password: "1234",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("Debes ingresar el username");
+  });
+});
+
+describe.skip("POST /sign-up", () => {
   it("should not register a new user because the password is missing", async () => {
     const response = await api
       .post("/sign-up")
       .send({
-        email: "prueba@prueba.com",
+        username: "test",
+        email: "test@test.com",
         password: "",
       })
       .set("Accept", "application/json");
 
     expect(response.type).toEqual("application/json");
-    expect(response.status).toEqual(404);
-    expect(response.body.message).toEqual("Informacion invalida");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("Debes ingresar la contraseña");
   });
 });
 
@@ -33,14 +51,48 @@ describe.skip("POST /sign-up", () => {
     const response = await api
       .post("/sign-up")
       .send({
+        username: "prueba",
         email: "",
         password: "1234",
       })
       .set("Accept", "application/json");
 
     expect(response.type).toEqual("application/json");
-    expect(response.status).toEqual(404);
-    expect(response.body.message).toEqual("Informacion invalida");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("Debes ingresar el email");
+  });
+});
+
+describe.skip("POST /sign-up", () => {
+  it("should not register a new user because the user already exists", async () => {
+    const response = await api
+      .post("/sign-up")
+      .send({
+        username: "test",
+        email: "prueba@prueba.com",
+        password: "1234",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("El usuario ya existe");
+  });
+});
+
+describe.skip("POST /sign-up", () => {
+  it("should register a new user", async () => {
+    const response = await api
+      .post("/sign-up")
+      .send({
+        username: "test",
+        email: "prueba@prueba.com",
+        password: "1234",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(200);
   });
 });
 
