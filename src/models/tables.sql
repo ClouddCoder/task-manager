@@ -22,7 +22,6 @@ CREATE TABLE task (
     PRIMARY KEY (task_id, user_id),
     FOREIGN KEY (user_id) REFERENCES user_data(user_id),
     CONSTRAINT check_not_null_user_id CHECK (user_id IS NOT NULL),
-    CONSTRAINT check_not_empty_user_id CHECK (user_id <> ''),
     CONSTRAINT check_not_null_task_title CHECK (task_title IS NOT NULL),
     CONSTRAINT check_not_empty_task_title CHECK (task_title <> ''),
     CONSTRAINT check_not_null_task_status CHECK (task_status IS NOT NULL),

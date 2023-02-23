@@ -16,6 +16,9 @@ const register = async (req, res, next) => {
 
   const registerQuery = "SELECT * FROM register($1, $2, $3)";
 
+  if (password.length === 0 || password === null) {
+    return res.status(401).json({ message: "Debes ingresar la contraseña" });
+  }
   const passwordHash = await bcrypt.hash(password, 10);
 
   try {
