@@ -96,6 +96,53 @@ describe.skip("POST /sign-up", () => {
   });
 });
 
+describe.skip("POST /login", () => {
+  it("should not log in because the user does not exist", async () => {
+    const response = await api
+      .post("/login")
+      .send({
+        email: "test@test.com",
+        password: "1234",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("El usuario no existe");
+  });
+});
+
+describe.skip("POST /login", () => {
+  it("should not log in because the login details are incorrect", async () => {
+    const response = await api
+      .post("/login")
+      .send({
+        email: "prueba@prueba.com",
+        password: "12345",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(401);
+    expect(response.body.message).toEqual("Email/Contraseña incorrecto");
+  });
+});
+
+describe.skip("POST /login", () => {
+  it("should log in", async () => {
+    const response = await api
+      .post("/login")
+      .send({
+        email: "prueba@prueba.com",
+        password: "1234",
+      })
+      .set("Accept", "application/json");
+
+    expect(response.type).toEqual("application/json");
+    expect(response.status).toEqual(200);
+  });
+});
+
 describe.skip("POST /create-task", () => {
   it("should not create a new task because the user is not authorized", async () => {
     const response = await api

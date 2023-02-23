@@ -53,8 +53,8 @@ const login = async (req, res, next) => {
   try {
     const response = await pool.query(loginQuery, [email]);
     if (response.rows.length === 0) {
-      return res.status(404).json({
-        message: "User not found",
+      return res.status(401).json({
+        message: "El usuario no existe",
       });
     }
 
@@ -66,7 +66,7 @@ const login = async (req, res, next) => {
 
     if (!checkPassword) {
       return res.status(401).json({
-        message: "User/Password incorrect",
+        message: "Email/Contraseña incorrecto",
       });
     }
 
