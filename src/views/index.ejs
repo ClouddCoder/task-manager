@@ -8,7 +8,7 @@
     <div class="container">
       <main>
         <div class="main-container">
-          <section class="task-container">
+          <section class="task-data-container">
             <h1>Task Manager</h1>
             <form id="submit-form">
               <input id="task-title" type="text" placeholder="Your task" />
@@ -16,11 +16,11 @@
               <button type="submit">Submit</button>
             </form>
           </section>
-          <section class="task-container">
+          <section class="tasks-container">
             <% if (data.length !== 0) { %> <% for (let task = 0; task < data.length; task++) { %>
             <div class="task">
               <h2><%= data[task].title %></h2>
-              <button class="delete" data-id="<%= data[task]._id %>">Delete</button>
+              <button id="button-delete">Delete</button>
             </div>
             <% } %> <% } else { %>
             <h2>No tasks</h2>
@@ -29,5 +29,6 @@
         </div>
       </main>
     </div>
+    <script src="/tasks.js"></script>
   </body>
 </html>

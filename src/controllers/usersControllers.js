@@ -78,7 +78,7 @@ const login = async (req, res, next) => {
     const token = jwt.sign(payload, "1234");
 
     return res.json({
-      username: data.username,
+      userId: data.user_id,
       token,
     });
   } catch (error) {

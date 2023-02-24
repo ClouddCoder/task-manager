@@ -22,7 +22,8 @@ const createTask = async (req, res, next) => {
 
   try {
     await pool.query(createTaskQuery, values);
-    res.redirect("/");
+
+    res.json({ message: "Task created successfully" });
   } catch (error) {
     next(error);
   }
