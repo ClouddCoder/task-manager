@@ -20,7 +20,7 @@
             <% if (data.length !== 0) { %> <% for (let task = 0; task < data.length; task++) { %>
             <div class="task">
               <h2><%= data[task].title %></h2>
-              <button id="button-delete">Delete</button>
+              <button id="<%= data[task].task_id %>" class="button-delete">Delete</button>
             </div>
             <% } %> <% } else { %>
             <h2>No tasks</h2>
