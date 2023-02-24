@@ -118,7 +118,7 @@ const updateTaskStatus = async (req, res, next) => {
  * @returns
  */
 const deleteTask = async (req, res, next) => {
-  const { taskId } = req.params;
+  const { taskId } = req.body;
   const { authorization } = req.headers;
   const decodeToken = getAuthorization(authorization);
 
@@ -131,7 +131,7 @@ const deleteTask = async (req, res, next) => {
 
   try {
     await pool.query(deleteTaskQuery, values);
-    res.redirect("/");
+    res.json({ message: "Task deleted successfully" });
   } catch (error) {
     next(error);
   }
