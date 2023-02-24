@@ -27,7 +27,7 @@ const registerPage = (req, res) => {
 const tasksPage = async (req, res, next) => {
   let data;
 
-  const { userId } = req.body;
+  const { userId } = req.query;
 
   const tasksQuery = "SELECT * FROM task WHERE user_id = $1";
 
@@ -37,7 +37,7 @@ const tasksPage = async (req, res, next) => {
     next(error);
   }
 
-  res.render("index", { title: "Task Manager", data: data.rows });
+  res.render("index", { title: "Task Manager", data: data?.rows });
 };
 
 export { tasksPage, loginPage, registerPage };

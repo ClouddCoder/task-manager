@@ -22,7 +22,7 @@ form.addEventListener("submit", (e) => {
     })
     .then((data) => {
       window.localStorage.setItem("logged", JSON.stringify(data));
-      window.location.href = "/";
+      window.location.href = `/?userId=${data.userId}`;
     })
     .catch((err) => {
       throw new Error(err);
