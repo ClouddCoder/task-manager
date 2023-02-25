@@ -26,6 +26,7 @@
     "import/extensions": ["error", "always"]
   },
   "globals": {
-    "loggedJSON": "writable"
+    "loggedJSON": "writable",
+    "taskId": "writable"
   }
 }

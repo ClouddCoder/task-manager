@@ -40,4 +40,16 @@ const tasksPage = async (req, res, next) => {
   res.render("index", { title: "Task Manager", data: data?.rows });
 };
 
-export { tasksPage, loginPage, registerPage };
+/**
+ * Renders the edit task page.
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+const editTaskPage = (req, res) => {
+  const { taskId } = req.params;
+
+  res.render("editTask", { title: "Task Manager", taskId });
+};
+
+export { tasksPage, loginPage, registerPage, editTaskPage };

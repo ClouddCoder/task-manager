@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { register, login } from "../controllers/usersControllers.js";
-import { loginPage, registerPage, tasksPage } from "../controllers/rendersControllers.js";
+import {
+  loginPage,
+  registerPage,
+  tasksPage,
+  editTaskPage,
+} from "../controllers/rendersControllers.js";
 import {
   createTask,
   updateTaskTitle,
@@ -12,6 +17,7 @@ import {
 const router = Router();
 
 router.get("/", tasksPage);
+router.get("/edit-task-page/:taskId", editTaskPage);
 router.get("/sign-up-page", registerPage);
 router.post("/sign-up", register);
 router.get("/login-page", loginPage);

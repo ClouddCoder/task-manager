@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head"); %>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <div class="main-container">
+          <div class="edit-task-container">
+            <h1>Edit task</h1>
+            <form id="update-title-form">
+              <div class="inner">
+                <input id="title" name="email" type="text" placeholder="Edit title" />
+                <button id="update-title" type="submit">Update title</button>
+              </div>
+            </form>
+            <form id="update-description-form">
+              <div class="inner">
+                <input
+                  id="description"
+                  name="description"
+                  type="password"
+                  placeholder="Edit description"
+                />
+                <button id="update-description" type="submit">Update description</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      const taskId = "<%= taskId %>";
+    </script>
+    <script src="/editTask.js"></script>
+  </body>
+</html>

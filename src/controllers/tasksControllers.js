@@ -50,7 +50,7 @@ const updateTaskTitle = async (req, res, next) => {
 
   try {
     await pool.query(updateTaskTitleQuery, values);
-    res.redirect("/");
+    res.json({ message: "Title updated successfully" });
   } catch (error) {
     next(error);
   }
@@ -77,7 +77,7 @@ const updateTaskDescription = async (req, res, next) => {
 
   try {
     await pool.query(updateTaskDescriptionQuery, values);
-    res.redirect("/");
+    res.json({ message: "Description updated successfully" });
   } catch (error) {
     next(error);
   }
@@ -104,7 +104,7 @@ const updateTaskStatus = async (req, res, next) => {
 
   try {
     await pool.query(updateTaskStatusQuery, values);
-    res.redirect("/");
+    res.json({ message: "Status updated successfully" });
   } catch (error) {
     next(error);
   }
