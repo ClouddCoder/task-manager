@@ -29,7 +29,7 @@ const tasksPage = async (req, res, next) => {
 
   const { userId } = req.params;
 
-  const tasksQuery = "SELECT * FROM task WHERE user_id = $1";
+  const tasksQuery = "SELECT * FROM task WHERE user_id = $1 ORDER BY task_id DESC";
 
   try {
     data = await pool.query(tasksQuery, [userId]);
