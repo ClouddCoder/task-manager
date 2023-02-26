@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { register, login } from "../controllers/usersControllers.js";
+import { signUp, login } from "../controllers/usersControllers.js";
 import {
   loginPage,
-  registerPage,
+  signUpPage,
   tasksPage,
   editTaskPage,
   custom404,
@@ -19,8 +19,8 @@ const router = Router();
 
 router.get("/tasks/:userId", tasksPage);
 router.get("/edit-task-page/:taskId", editTaskPage);
-router.get("/sign-up-page", registerPage);
-router.post("/sign-up", register);
+router.get("/sign-up-page", signUpPage);
+router.post("/sign-up", signUp);
 router.get("/login-page", loginPage);
 router.post("/login", login);
 router.post("/create-task", createTask);

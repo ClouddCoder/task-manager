@@ -14,8 +14,8 @@ const loginPage = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const registerPage = (req, res) => {
-  res.render("register", { title: "Task Manager" });
+const signUpPage = (req, res) => {
+  res.render("signUp", { title: "Task Manager" });
 };
 
 /**
@@ -56,4 +56,4 @@ const custom404 = (req, res) => {
   res.status(404).render("404", { title: "Task Manager" });
 };
 
-export { tasksPage, loginPage, registerPage, editTaskPage, custom404 };
+export { tasksPage, loginPage, signUpPage, editTaskPage, custom404 };

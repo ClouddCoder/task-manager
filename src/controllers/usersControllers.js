@@ -11,18 +11,20 @@ const jwtPassword = process.env.JWT_SECRET;
  * @param {*} next
  * @returns
  */
-const register = async (req, res, next) => {
+const signUp = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   const registerQuery = "SELECT * FROM register($1, $2, $3)";
 
   if (password.length === 0 || password === null) {
-    return res.status(401).json({ message: "Debes ingresar la contraseña" });
+    return res.status(401).json({ message: "You must enter the password" });
   }
   const passwordHash = await bcrypt.hash(password, 10);
 
   try {
     const userId = await pool.query(registerQuery, [username, email, passwordHash]);
+
+    console.log(userId.rows[0].register);
 
     const payload = {
       userId: userId.rows[0].register,
@@ -31,7 +33,7 @@ const register = async (req, res, next) => {
 
     const token = jwt.sign(payload, jwtPassword);
 
-    return res.json({ message: "User registered successfully", token });
+    return res.json({ userId: userId.rows[0].register, token });
   } catch (error) {
     next(error);
   }
@@ -54,7 +56,7 @@ const login = async (req, res, next) => {
     const response = await pool.query(loginQuery, [email]);
     if (response.rows.length === 0) {
       return res.status(401).json({
-        message: "El usuario no existe",
+        message: "User not found",
       });
     }
 
@@ -66,7 +68,7 @@ const login = async (req, res, next) => {
 
     if (!checkPassword) {
       return res.status(401).json({
-        message: "Email/Contraseña incorrecto",
+        message: "Incorrect Email/Password",
       });
     }
 
@@ -86,4 +88,4 @@ const login = async (req, res, next) => {
   }
 };
 
-export { register, login };
+export { signUp, login };
