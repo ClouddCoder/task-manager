@@ -27,7 +27,7 @@ form.addEventListener("submit", (e) => {
   fetch("/create-task", init)
     .then((res) => res.json())
     .then((data) => {
-      if (data.message) window.location.href = `/?userId=${user.userId}`;
+      if (data.message) window.location.href = `/tasks/${user.userId}`;
     })
     .catch((err) => {
       console.log(err);
@@ -51,7 +51,7 @@ document.addEventListener("click", (e) => {
     fetch("/delete-task", init)
       .then((res) => res.json())
       .then((data) => {
-        if (data.message) window.location.href = `/?userId=${user.userId}`;
+        if (data.message) window.location.href = `/tasks/${user.userId}`;
       })
       .catch((err) => {
         console.log(err);

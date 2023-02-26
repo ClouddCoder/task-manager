@@ -14,8 +14,8 @@ const loginPage = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const registerPage = (req, res) => {
-  res.render("register", { title: "Task Manager" });
+const signUpPage = (req, res) => {
+  res.render("signUp", { title: "Task Manager" });
 };
 
 /**
@@ -27,7 +27,7 @@ const registerPage = (req, res) => {
 const tasksPage = async (req, res, next) => {
   let data;
 
-  const { userId } = req.query;
+  const { userId } = req.params;
 
   const tasksQuery = "SELECT * FROM task WHERE user_id = $1";
 
@@ -40,4 +40,20 @@ const tasksPage = async (req, res, next) => {
   res.render("index", { title: "Task Manager", data: data?.rows });
 };
 
-export { tasksPage, loginPage, registerPage };
+/**
+ * Renders the edit task page.
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+const editTaskPage = (req, res) => {
+  const { taskId } = req.params;
+
+  res.render("editTask", { title: "Task Manager", taskId });
+};
+
+const custom404 = (req, res) => {
+  res.status(404).render("404", { title: "Task Manager" });
+};
+
+export { tasksPage, loginPage, signUpPage, editTaskPage, custom404 };

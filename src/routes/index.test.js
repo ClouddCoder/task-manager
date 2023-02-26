@@ -68,8 +68,8 @@ describe.skip("POST /sign-up", () => {
     const response = await api
       .post("/sign-up")
       .send({
-        username: "test",
-        email: "prueba@prueba.com",
+        username: "perez",
+        email: "perez@perez.com",
         password: "1234",
       })
       .set("Accept", "application/json");
@@ -85,7 +85,7 @@ describe.skip("POST /sign-up", () => {
     const response = await api
       .post("/sign-up")
       .send({
-        username: "test",
+        username: "prueba",
         email: "prueba@prueba.com",
         password: "1234",
       })
@@ -284,5 +284,14 @@ describe.skip("PUT /update-task-status", () => {
 
     expect(response.status).toEqual(302);
     getAuthorizationSpy.mockRestore();
+  });
+});
+
+describe.skip("GET *", () => {
+  it("should return 404", async () => {
+    const response = await api.get("/test");
+
+    console.log(response.body);
+    expect(response.status).toEqual(404);
   });
 });

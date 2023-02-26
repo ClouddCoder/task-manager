@@ -3,7 +3,7 @@ import pool from "../db.js";
 
 jest.mock("../db.js");
 
-const req = { body: { userId: 1 } };
+const req = { body: { userId: 1 }, params: { taskId: 1 } };
 const res = {
   render: jest.fn(),
 };
@@ -45,5 +45,12 @@ describe.skip("tasksPage", () => {
       title: "Task Manager",
       data: [],
     });
+  });
+});
+
+describe.skip("editTaskPage", () => {
+  it("should render the edit task page", () => {
+    Render.editTaskPage(req, res);
+    expect(res.render).toHaveBeenCalledWith("editTask", { title: "Task Manager", taskId: 1 });
   });
 });

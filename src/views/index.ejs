@@ -19,8 +19,11 @@
           <section class="tasks-container">
             <% if (data.length !== 0) { %> <% for (let task = 0; task < data.length; task++) { %>
             <div class="task">
-              <h2><%= data[task].title %></h2>
-              <button id="<%= data[task].task_id %>" class="button-delete">Delete</button>
+              <h2 id="task-title"><%= data[task].task_title %></h2>
+              <div class="task-options">
+                <a href="/edit-task-page/<%= data[task].task_id %>">Edit</a>
+                <button id="<%= data[task].task_id %>" class="button-delete">Delete</button>
+              </div>
             </div>
             <% } %> <% } else { %>
             <h2>No tasks</h2>
