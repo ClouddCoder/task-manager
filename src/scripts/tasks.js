@@ -71,5 +71,26 @@ document.addEventListener("change", (e) => {
     } else {
       taskTitleField.classList.remove("completed");
     }
+
+    const init = {
+      method: "PUT",
+      body: JSON.stringify({
+        taskId: e.target.id,
+        status: e.target.checked ? "completed" : "pending",
+      }),
+      headers: {
+        "Authorization": `Bearer ${user.token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch("/update-task-status", init)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) window.location.href = `/tasks/${user.userId}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 });
