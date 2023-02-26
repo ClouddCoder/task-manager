@@ -58,3 +58,39 @@ document.addEventListener("click", (e) => {
       });
   }
 });
+
+/**
+ * Sets status using event delegation.
+ */
+document.addEventListener("change", (e) => {
+  if (e.target.matches(".checkbox-status")) {
+    const taskTitleField = document.getElementById(e.target.id);
+
+    if (e.target.checked) {
+      taskTitleField.classList.add("completed");
+    } else {
+      taskTitleField.classList.remove("completed");
+    }
+
+    const init = {
+      method: "PUT",
+      body: JSON.stringify({
+        taskId: e.target.id,
+        status: e.target.checked ? "completed" : "pending",
+      }),
+      headers: {
+        "Authorization": `Bearer ${user.token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch("/update-task-status", init)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) window.location.href = `/tasks/${user.userId}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+});
