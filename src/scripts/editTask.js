@@ -4,7 +4,6 @@ const titleInput = document.getElementById("title");
 const updateDescriptionForm = document.getElementById("update-description-form");
 const descriptionInput = document.getElementById("description");
 
-const loggedJSON = window.localStorage.getItem("logged");
 const user = JSON.parse(loggedJSON);
 
 updateTitleForm.addEventListener("submit", (e) => {
@@ -24,7 +23,7 @@ updateTitleForm.addEventListener("submit", (e) => {
   fetch("/update-task-title", initTitle)
     .then((res) => res.json())
     .then((data) => {
-      if (data.message) window.location.href = `/?userId=${user.userId}`;
+      if (data.message) window.location.href = `/tasks/${user.userId}`;
     })
     .catch((err) => console.log(err));
 });
@@ -46,7 +45,7 @@ updateDescriptionForm.addEventListener("submit", (e) => {
   fetch("/update-task-description", initDescription)
     .then((res) => res.json())
     .then((data) => {
-      if (data.message) window.location.href = `/?userId=${user.userId}`;
+      if (data.message) window.location.href = `/tasks/${user.userId}`;
     })
     .catch((err) => console.log(err));
 });

@@ -286,3 +286,12 @@ describe.skip("PUT /update-task-status", () => {
     getAuthorizationSpy.mockRestore();
   });
 });
+
+describe.skip("GET *", () => {
+  it("should return 404", async () => {
+    const response = await api.get("/test");
+
+    console.log(response.body);
+    expect(response.status).toEqual(404);
+  });
+});

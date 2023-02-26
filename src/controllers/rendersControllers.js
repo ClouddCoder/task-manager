@@ -27,7 +27,7 @@ const registerPage = (req, res) => {
 const tasksPage = async (req, res, next) => {
   let data;
 
-  const { userId } = req.query;
+  const { userId } = req.params;
 
   const tasksQuery = "SELECT * FROM task WHERE user_id = $1";
 
@@ -52,4 +52,8 @@ const editTaskPage = (req, res) => {
   res.render("editTask", { title: "Task Manager", taskId });
 };
 
-export { tasksPage, loginPage, registerPage, editTaskPage };
+const custom404 = (req, res) => {
+  res.status(404).render("404", { title: "Task Manager" });
+};
+
+export { tasksPage, loginPage, registerPage, editTaskPage, custom404 };

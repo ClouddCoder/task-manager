@@ -2,6 +2,10 @@ const form = document.querySelector(".login-form");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 
+const logged = window.localStorage.getItem("logged");
+
+if (logged) window.localStorage.removeItem("logged");
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -22,7 +26,7 @@ form.addEventListener("submit", (e) => {
     })
     .then((data) => {
       window.localStorage.setItem("logged", JSON.stringify(data));
-      window.location.href = `/?userId=${data.userId}`;
+      window.location.href = `/tasks/${data.userId}`;
     })
     .catch((err) => {
       throw new Error(err);
