@@ -19,8 +19,11 @@
           <section class="tasks-container">
             <% if (data.length !== 0) { %> <% for (let task = 0; task < data.length; task++) { %>
             <div class="task">
-              <h2 id="task-title"><%= data[task].task_title %></h2>
+              <h2 id="<%= data[task].task_id %>" class="task-title">
+                <%= data[task].task_title %>
+              </h2>
               <div class="task-options">
+                <input id="<%= data[task].task_id %>" class="checkbox-status" type="checkbox" />
                 <a href="/edit-task-page/<%= data[task].task_id %>">Edit</a>
                 <button id="<%= data[task].task_id %>" class="button-delete">Delete</button>
               </div>

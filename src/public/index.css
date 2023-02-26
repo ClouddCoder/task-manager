@@ -68,8 +68,17 @@ main {
 .task-options,
 .inner {
   display: flex;
+  column-gap: 10px;
+}
+
+.task {
+  width: 90%;
 }
 
 .task-title {
   flex: 2;
+}
+
+.completed {
+  color: green;
 }

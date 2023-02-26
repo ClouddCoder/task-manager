@@ -58,3 +58,18 @@ document.addEventListener("click", (e) => {
       });
   }
 });
+
+/**
+ * Sets status using event delegation.
+ */
+document.addEventListener("change", (e) => {
+  if (e.target.matches(".checkbox-status")) {
+    const taskTitleField = document.getElementById(e.target.id);
+
+    if (e.target.checked) {
+      taskTitleField.classList.add("completed");
+    } else {
+      taskTitleField.classList.remove("completed");
+    }
+  }
+});
