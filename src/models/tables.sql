@@ -16,7 +16,7 @@ CREATE TABLE task (
     task_id SERIAL,
     user_id INTEGER,
     task_title VARCHAR(25),
-    task_description VARCHAR(100),
+    task_description VARCHAR(30),
     task_status VARCHAR(25),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (task_id, user_id),

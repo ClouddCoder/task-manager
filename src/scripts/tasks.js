@@ -1,6 +1,8 @@
 const form = document.getElementById("submit-form");
 const taskTitle = document.getElementById("task-title");
 const taskDescription = document.getElementById("task-description");
+const submitButton = document.getElementById("submit-button");
+const counter = document.getElementById("counter");
 
 const user = JSON.parse(loggedJSON);
 
@@ -38,7 +40,7 @@ form.addEventListener("submit", (e) => {
  * Deletes a task using event delegation.
  */
 document.addEventListener("click", (e) => {
-  if (e.target.matches(".button-delete")) {
+  if (e.target.matches(".delete-button")) {
     const init = {
       method: "DELETE",
       body: JSON.stringify({ taskId: e.target.id }),
@@ -93,4 +95,17 @@ document.addEventListener("change", (e) => {
         console.log(err);
       });
   }
+});
+
+/**
+ * Updates the description length counter.
+ */
+taskDescription.addEventListener("input", (e) => {
+  if (e.target.value.length > 30) {
+    submitButton.disabled = true;
+  } else {
+    submitButton.disabled = false;
+  }
+
+  counter.textContent = `${e.target.value.length}/30`;
 });
