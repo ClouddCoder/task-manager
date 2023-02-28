@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head"); %>
+    <script src="/authentication.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <section id="sign-out-button__container">
+          <a id="sign-out-button" href="/"><span>Sign out</span></a>
+        </section>
+      </header>
+      <main>
+        <div class="main-container">
+          <section class="task-data-container">
+            <h1>Task Manager</h1>
+            <form id="submit-form">
+              <input id="input-task-title" class="input" type="text" placeholder="Your task" />
+              <div class="description-container">
+                <textarea
+                  id="task-description"
+                  placeholder="Description"
+                  data-pattern="^.{1,50}$"
+                ></textarea>
+                <div class="description-counter">
+                  <span id="counter">0/30</span>
+                </div>
+              </div>
+              <button id="submit-button" type="submit">Submit</button>
+            </form>
+          </section>
+          <section class="tasks-container">
+            <% if (data.length !== 0) { %> <% for (let task = 0; task < data.length; task++) { %>
+            <div class="task">
+              <section class="task-data">
+                <h2
+                  id="<%= data[task].task_id %>"
+                  class="task-title <%= data[task].task_status === 'completed' ? 'completed' : 'pending' %>"
+                >
+                  <%= data[task].task_title %>
+                </h2>
+                <span><%= data[task].task_description %></span>
+              </section>
+              <section class="task-options">
+                <input id="<%= data[task].task_id %>" class="checkbox-status" type="checkbox" <%=
+                data[task].task_status === 'completed' ? 'checked' : '' %> />
+                <a id="edit-button" href="/edit-task-page/<%= data[task].task_id %>">
+                  <span>Edit</span>
+                </a>
+                <button id="<%= data[task].task_id %>" class="delete-button">Delete</button>
+              </section>
+            </div>
+            <% } %> <% } else { %>
+            <h2>No tasks</h2>
+            <% } %>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="/tasks.js"></script>
+  </body>
+</html>
