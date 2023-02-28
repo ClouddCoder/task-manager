@@ -12,6 +12,13 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+describe.skip("mainPage", () => {
+  it("should render the main page", () => {
+    Render.mainPage(req, res);
+    expect(res.render).toHaveBeenCalledWith("index", { title: "Task Manager" });
+  });
+});
+
 describe.skip("loginPage", () => {
   it("should render the login page", () => {
     Render.loginPage(req, res);
@@ -41,7 +48,7 @@ describe.skip("tasksPage", () => {
   it("should render the tasks page", async () => {
     await Render.tasksPage(req, res);
 
-    expect(res.render).toHaveBeenCalledWith("index", {
+    expect(res.render).toHaveBeenCalledWith("tasks", {
       title: "Task Manager",
       data: [],
     });

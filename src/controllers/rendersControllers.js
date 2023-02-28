@@ -1,6 +1,15 @@
 import pool from "../db.js";
 
 /**
+ * Renders the main page.
+ * @param {*} req
+ * @param {*} res
+ */
+const mainPage = (req, res) => {
+  res.render("index", { title: "Task Manager" });
+};
+
+/**
  * Renders the login page.
  * @param {*} req
  * @param {*} res
@@ -37,7 +46,7 @@ const tasksPage = async (req, res, next) => {
     next(error);
   }
 
-  res.render("index", { title: "Task Manager", data: data?.rows });
+  res.render("tasks", { title: "Task Manager", data: data?.rows });
 };
 
 /**
@@ -56,4 +65,4 @@ const custom404 = (req, res) => {
   res.status(404).render("404", { title: "Task Manager" });
 };
 
-export { tasksPage, loginPage, signUpPage, editTaskPage, custom404 };
+export { mainPage, tasksPage, loginPage, signUpPage, editTaskPage, custom404 };

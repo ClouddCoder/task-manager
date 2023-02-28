@@ -1,8 +1,9 @@
 const form = document.getElementById("submit-form");
-const taskTitle = document.getElementById("task-title");
+const taskTitle = document.getElementById("input-task-title");
 const taskDescription = document.getElementById("task-description");
 const submitButton = document.getElementById("submit-button");
 const counter = document.getElementById("counter");
+const signOutButton = document.getElementById("sign-out-button");
 
 const user = JSON.parse(loggedJSON);
 
@@ -108,4 +109,13 @@ taskDescription.addEventListener("input", (e) => {
   }
 
   counter.textContent = `${e.target.value.length}/30`;
+});
+
+/**
+ * Signs out the user.
+ */
+signOutButton.addEventListener("click", () => {
+  window.location.href = "/";
+
+  window.localStorage.removeItem("logged");
 });

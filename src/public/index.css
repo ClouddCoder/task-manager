@@ -23,6 +23,16 @@ body {
   align-items: center;
 }
 
+header {
+  width: 90%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#sign-out-button {
+  margin: 10px;
+}
+
 main {
   width: 90%;
   flex: 1 0 auto;
@@ -34,7 +44,9 @@ main {
 
 .main-container,
 .task-data-container,
-.tasks-container {
+.tasks-container,
+.landing,
+.landing section {
   width: 100%;
   height: 100%;
   display: flex;
@@ -45,6 +57,14 @@ main {
 
 .main-container {
   row-gap: 30px;
+}
+
+.landing section {
+  max-width: 400px;
+}
+
+.landing section a {
+  width: 100%;
 }
 
 .login-form,
@@ -71,7 +91,7 @@ h2 {
 span,
 .input,
 #task-description,
-#edit-button,
+a,
 button {
   font-size: clamp(1.2rem, 4vw, 1.5rem);
 }
@@ -86,7 +106,9 @@ button {
 .login-container,
 .sign-up-container,
 .login-form,
-.sign-up-form {
+.sign-up-form,
+.landing,
+.landing section {
   row-gap: 10px;
 }
 
@@ -117,7 +139,7 @@ button {
 }
 
 button,
-#edit-button {
+a {
   border: 1px solid black;
   background: transparent;
   padding: 0.4rem 0.8rem;
@@ -126,11 +148,11 @@ button,
 }
 
 button:hover,
-#edit-button:hover {
+a:hover {
   background: rgba(242, 202, 82, 0.2);
 }
 
-#edit-button {
+a {
   display: grid;
   place-items: center;
   color: black;

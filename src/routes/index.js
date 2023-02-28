@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { signUp, login } from "../controllers/usersControllers.js";
 import {
+  mainPage,
   loginPage,
   signUpPage,
   tasksPage,
@@ -17,6 +18,7 @@ import {
 
 const router = Router();
 
+router.get("/", mainPage);
 router.get("/tasks/:userId", tasksPage);
 router.get("/edit-task-page/:taskId", editTaskPage);
 router.get("/sign-up-page", signUpPage);
