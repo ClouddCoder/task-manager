@@ -2,6 +2,7 @@ const form = document.getElementById("submit-form");
 const taskTitle = document.getElementById("input-task-title");
 const taskDescription = document.getElementById("task-description");
 const submitButton = document.getElementById("submit-button");
+const loader = document.querySelector(".submit-loader");
 const counter = document.getElementById("counter");
 const signOutButton = document.getElementById("sign-out-button");
 
@@ -27,12 +28,21 @@ form.addEventListener("submit", (e) => {
     },
   };
 
+  submitButton.style.display = "none";
+  loader.classList.add("show");
+
   fetch("/create-task", init)
     .then((res) => res.json())
     .then((data) => {
       if (data.message) window.location.href = `/tasks/${user.userId}`;
+
+      loader.classList.remove("show");
+      submitButton.style.display = "block";
     })
     .catch((err) => {
+      loader.classList.remove("show");
+      submitButton.style.display = "block";
+
       console.log(err);
     });
 });
@@ -63,7 +73,7 @@ document.addEventListener("click", (e) => {
 });
 
 /**
- * Sets status using event delegation.
+ * Sets the task's status using event delegation.
  */
 document.addEventListener("change", (e) => {
   if (e.target.matches(".checkbox-status")) {

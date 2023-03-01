@@ -206,6 +206,7 @@ a {
 
 .login-loader,
 .sign-up-loader,
+.submit-loader,
 .update-title-loader,
 .update-description-loader {
   display: none;

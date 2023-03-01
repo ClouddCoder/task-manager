@@ -11,6 +11,8 @@ const logged = window.localStorage.getItem("logged");
 
 if (logged) window.localStorage.removeItem("logged");
 
+loginButton.disabled = false;
+
 /**
  * Handles the submit event of the login form.
  */
@@ -36,15 +38,18 @@ loginForm.addEventListener("submit", (e) => {
       throw new Error("Something went wrong");
     })
     .then((data) => {
-      loginButton.style.display = "block";
-      loader.classList.remove("show");
-
       window.localStorage.setItem("logged", JSON.stringify(data));
       window.location.href = `/tasks/${data.userId}`;
+
+      loader.classList.remove("show");
+      loginButton.style.display = "block";
+
+      // Disables the login button to prevent multiple requests.
+      loginButton.disabled = true;
     })
     .catch((err) => {
-      loginButton.style.display = "block";
       loader.classList.remove("show");
+      loginButton.style.display = "block";
 
       // Creates a span element for each input and adds the error message to it.
       inputs.forEach((input) => {
