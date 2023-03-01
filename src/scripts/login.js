@@ -3,6 +3,8 @@ import { createSpan } from "./utils.js";
 const loginForm = document.querySelector(".login-form");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+const loginButton = document.getElementById("login-button");
+const loader = document.querySelector(".login-loader");
 const inputs = document.querySelectorAll("input");
 
 const logged = window.localStorage.getItem("logged");
@@ -23,6 +25,9 @@ loginForm.addEventListener("submit", (e) => {
     },
   };
 
+  loginButton.style.display = "none";
+  loader.classList.add("show");
+
   fetch("/login", init)
     .then((res) => {
       if (res.ok) {
@@ -31,10 +36,16 @@ loginForm.addEventListener("submit", (e) => {
       throw new Error("Something went wrong");
     })
     .then((data) => {
+      loginButton.style.display = "block";
+      loader.classList.remove("show");
+
       window.localStorage.setItem("logged", JSON.stringify(data));
       window.location.href = `/tasks/${data.userId}`;
     })
     .catch((err) => {
+      loginButton.style.display = "block";
+      loader.classList.remove("show");
+
       // Creates a span element for each input and adds the error message to it.
       inputs.forEach((input) => {
         createSpan(input, err);
