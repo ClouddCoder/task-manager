@@ -68,15 +68,15 @@ describe.skip("POST /sign-up", () => {
     const response = await api
       .post("/sign-up")
       .send({
-        username: "perez",
-        email: "perez@perez.com",
+        username: "cara",
+        email: "cara@cara.com",
         password: "1234",
       })
       .set("Accept", "application/json");
 
     expect(response.type).toEqual("application/json");
     expect(response.status).toEqual(401);
-    expect(response.body.message).toEqual("El usuario ya existe");
+    expect(response.body.message).toEqual("User already exists");
   });
 });
 

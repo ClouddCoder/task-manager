@@ -24,8 +24,6 @@ const signUp = async (req, res, next) => {
   try {
     const userId = await pool.query(registerQuery, [username, email, passwordHash]);
 
-    console.log(userId.rows[0].register);
-
     const payload = {
       userId: userId.rows[0].register,
       username,
