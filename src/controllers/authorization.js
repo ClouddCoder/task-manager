@@ -10,6 +10,7 @@ const jwtPassword = process.env.JWT_SECRET;
  */
 const getAuthorization = (authorization) => {
   let token = null;
+  let decodeToken = null;
 
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     // eslint-disable-next-line prefer-destructuring
@@ -22,7 +23,12 @@ const getAuthorization = (authorization) => {
     return { code: 401, message: "Token missing or invalid" };
   }
 
-  const decodeToken = jwt.verify(token, jwtPassword);
+  try {
+    decodeToken = jwt.verify(token, jwtPassword);
+  } catch (error) {
+    console.log(error);
+    return { code: 401, message: "Token missing or invalid" };
+  }
 
   if (!decodeToken.userId) {
     return { code: 401, message: "Unauthorized" };

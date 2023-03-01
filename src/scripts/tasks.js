@@ -32,18 +32,22 @@ form.addEventListener("submit", (e) => {
   loader.classList.add("show");
 
   fetch("/create-task", init)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.message) window.location.href = `/tasks/${user.userId}`;
+    .then((res) => {
+      if (res.ok) {
+        window.location.href = `/tasks/${user.userId}`;
 
-      loader.classList.remove("show");
-      submitButton.style.display = "block";
+        loader.classList.remove("show");
+        submitButton.style.display = "block";
+      } else {
+        return Promise.reject(res);
+      }
     })
     .catch((err) => {
       loader.classList.remove("show");
       submitButton.style.display = "block";
 
-      console.log(err);
+      // eslint-disable-next-line no-alert
+      err.json().then((data) => alert(data.message));
     });
 });
 
@@ -62,12 +66,16 @@ document.addEventListener("click", (e) => {
     };
 
     fetch("/delete-task", init)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) window.location.href = `/tasks/${user.userId}`;
+      .then((res) => {
+        if (res.ok) {
+          window.location.href = `/tasks/${user.userId}`;
+        } else {
+          return Promise.reject(res);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        // eslint-disable-next-line no-alert
+        err.json().then((data) => alert(data.message));
       });
   }
 });
@@ -98,12 +106,16 @@ document.addEventListener("change", (e) => {
     };
 
     fetch("/update-task-status", init)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) window.location.href = `/tasks/${user.userId}`;
+      .then((res) => {
+        if (res.ok) {
+          window.location.href = `/tasks/${user.userId}`;
+        } else {
+          return Promise.reject(res);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        // eslint-disable-next-line no-alert
+        err.json().then((data) => alert(data.message));
       });
   }
 });
