@@ -1,11 +1,17 @@
+import { createSpan } from "./utils.js";
+
 const loginForm = document.querySelector(".login-form");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+const inputs = document.querySelectorAll("input");
 
 const logged = window.localStorage.getItem("logged");
 
 if (logged) window.localStorage.removeItem("logged");
 
+/**
+ * Handles the submit event of the login form.
+ */
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -29,6 +35,9 @@ loginForm.addEventListener("submit", (e) => {
       window.location.href = `/tasks/${data.userId}`;
     })
     .catch((err) => {
-      throw new Error(err);
+      // Creates a span element for each input and adds the error message to it.
+      inputs.forEach((input) => {
+        createSpan(input, err);
+      });
     });
 });
