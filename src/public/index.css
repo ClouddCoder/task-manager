@@ -106,6 +106,8 @@ button {
   background: red;
   color: white;
   text-align: center;
+  padding: 7px;
+  font-size: clamp(0.9rem, 4vw, 1.2rem);
 }
 
 .none {
