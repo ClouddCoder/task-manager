@@ -6,7 +6,7 @@
 const createSpan = (input, err) => {
   const span = document.createElement("span");
 
-  span.textContent = err.message;
+  span.textContent = err;
   span.classList.remove("none");
   span.classList.add("error");
 

@@ -32,10 +32,9 @@ loginForm.addEventListener("submit", (e) => {
 
   fetch("/login", init)
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error("Something went wrong");
+      if (res.ok) return res.json();
+
+      return Promise.reject(res);
     })
     .then((data) => {
       window.localStorage.setItem("logged", JSON.stringify(data));
@@ -51,9 +50,11 @@ loginForm.addEventListener("submit", (e) => {
       loader.classList.remove("show");
       loginButton.style.display = "block";
 
-      // Creates a span element for each input and adds the error message to it.
-      inputs.forEach((input) => {
-        createSpan(input, err);
+      err.json().then((data) => {
+        // Creates a span element for each input and adds the error message to it.
+        inputs.forEach((input) => {
+          createSpan(input, data.message);
+        });
       });
     });
 });
