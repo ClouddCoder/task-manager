@@ -28,18 +28,21 @@ updateTitleForm.addEventListener("submit", (e) => {
   updateTitleLoader.classList.add("show");
 
   fetch("/update-task-title", initTitle)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.message) window.location.href = `/tasks/${user.userId}`;
+    .then((res) => {
+      if (res.ok) {
+        window.location.href = `/tasks/${user.userId}`;
 
-      updateTitleLoader.classList.remove("show");
-      updateTitleButton.style.display = "block";
+        updateTitleLoader.classList.remove("show");
+        updateTitleButton.style.display = "block";
+      } else {
+        return Promise.reject(res);
+      }
     })
     .catch((err) => {
       updateTitleLoader.classList.remove("show");
       updateTitleButton.style.display = "block";
 
-      console.log(err);
+      err.json().then((data) => alert(data.message));
     });
 });
 
@@ -61,17 +64,20 @@ updateDescriptionForm.addEventListener("submit", (e) => {
   updateDescriptionLoader.classList.add("show");
 
   fetch("/update-task-description", initDescription)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.message) window.location.href = `/tasks/${user.userId}`;
+    .then((res) => {
+      if (res.ok) {
+        window.location.href = `/tasks/${user.userId}`;
 
-      updateDescriptionLoader.classList.remove("show");
-      updateDescriptionButton.style.display = "block";
+        updateDescriptionLoader.classList.remove("show");
+        updateDescriptionButton.style.display = "block";
+      } else {
+        return Promise.reject(res);
+      }
     })
     .catch((err) => {
       updateDescriptionLoader.classList.remove("show");
       updateDescriptionButton.style.display = "block";
 
-      console.log(err);
+      err.json().then((data) => alert(data.message));
     });
 });

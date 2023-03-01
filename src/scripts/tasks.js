@@ -74,7 +74,6 @@ document.addEventListener("click", (e) => {
         }
       })
       .catch((err) => {
-        // eslint-disable-next-line no-alert
         err.json().then((data) => alert(data.message));
       });
   }

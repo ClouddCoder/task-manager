@@ -23,7 +23,8 @@
     "no-confusing-arrow": "off",
     "function-paren-newline": "off",
     "no-underscore-dangle": "off",
-    "import/extensions": ["error", "always"]
+    "import/extensions": ["error", "always"],
+    "no-alert": "off"
   },
   "globals": {
     "loggedJSON": "writable",
