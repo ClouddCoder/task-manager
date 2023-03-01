@@ -1,7 +1,10 @@
+import { createSpan } from "./utils.js";
+
 const signUpForm = document.querySelector(".sign-up-form");
 const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+const inputs = document.querySelectorAll("input");
 
 const logged = window.localStorage.getItem("logged");
 
@@ -34,6 +37,9 @@ signUpForm.addEventListener("submit", (e) => {
       window.location.href = `/tasks/${data.userId}`;
     })
     .catch((err) => {
-      throw new Error(err);
+      // Creates a span element for each input and adds the error message to it.
+      inputs.forEach((input) => {
+        createSpan(input, err);
+      });
     });
 });

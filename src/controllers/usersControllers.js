@@ -46,7 +46,6 @@ const signUp = async (req, res, next) => {
  * @param {*} next
  * @returns
  */
-
 const login = async (req, res, next) => {
   const { email, password } = req.body;
 
