@@ -41,6 +41,7 @@ AS $$
     END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER set_old_task
-AFTER DELETE ON task
-    FOR EACH ROW EXECUTE FUNCTION set_old_task();
+CREATE TRIGGER set_old_task_trigger
+    AFTER DELETE ON task
+    FOR EACH ROW
+    EXECUTE FUNCTION set_old_task();
