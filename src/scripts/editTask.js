@@ -1,8 +1,12 @@
 const updateTitleForm = document.getElementById("update-title-form");
 const titleInput = document.getElementById("title");
+const updateTitleButton = document.getElementById("update-title-button");
+const updateTitleLoader = document.querySelector(".update-title-loader");
 
 const updateDescriptionForm = document.getElementById("update-description-form");
 const descriptionInput = document.getElementById("description");
+const updateDescriptionButton = document.getElementById("update-description-button");
+const updateDescriptionLoader = document.querySelector(".update-description-loader");
 
 const user = JSON.parse(loggedJSON);
 
@@ -20,12 +24,23 @@ updateTitleForm.addEventListener("submit", (e) => {
     },
   };
 
+  updateTitleButton.style.display = "none";
+  updateTitleLoader.classList.add("show");
+
   fetch("/update-task-title", initTitle)
     .then((res) => res.json())
     .then((data) => {
       if (data.message) window.location.href = `/tasks/${user.userId}`;
+
+      updateTitleLoader.classList.remove("show");
+      updateTitleButton.style.display = "block";
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      updateTitleLoader.classList.remove("show");
+      updateTitleButton.style.display = "block";
+
+      console.log(err);
+    });
 });
 
 updateDescriptionForm.addEventListener("submit", (e) => {
@@ -42,10 +57,21 @@ updateDescriptionForm.addEventListener("submit", (e) => {
     },
   };
 
+  updateDescriptionButton.style.display = "none";
+  updateDescriptionLoader.classList.add("show");
+
   fetch("/update-task-description", initDescription)
     .then((res) => res.json())
     .then((data) => {
       if (data.message) window.location.href = `/tasks/${user.userId}`;
+
+      updateDescriptionLoader.classList.remove("show");
+      updateDescriptionButton.style.display = "block";
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      updateDescriptionLoader.classList.remove("show");
+      updateDescriptionButton.style.display = "block";
+
+      console.log(err);
+    });
 });
