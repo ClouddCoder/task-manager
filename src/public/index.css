@@ -203,3 +203,15 @@ a {
 .completed {
   color: green;
 }
+
+.login-loader,
+.sign-up-loader,
+.submit-loader,
+.update-title-loader,
+.update-description-loader {
+  display: none;
+}
+
+.show {
+  display: block;
+}
