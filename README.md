@@ -24,7 +24,7 @@ Task Manager to stay organized every day.
 - Install node.js.
 - Install Docker and Docker Compose.
 
-## Instalation
+## Installation
 
 1. Clone the repo:
 
