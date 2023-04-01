@@ -32,7 +32,7 @@ Task Manager to stay organized every day.
 git clone https://github.com/ClouddCoder/task-manager.git
 ```
 
-2. Install npm dependencies in the project root:
+2. Install the dependencies in the project root:
 
 ```
 npm install
@@ -82,7 +82,3 @@ https://task-manager-sn3p.onrender.com
 # Contributors
 
 - [@ClouddCoder](https://github.com/ClouddCoder)
-
-# License
-
-Lottus is MIT licensed.
